@@ -8,7 +8,8 @@ def checkForConfig():
 def readFromConfig():
 	if checkForConfig():
 		for line in open(os.getcwd()+"/config.txt"):
-			changeDirectory(line)
+			line2 = line.replace('\n', '')
+			changeDirectory(line2)
 			git("pull")
 
 	else:
@@ -21,13 +22,12 @@ def readFromConfig():
 			sys.exit(0)
 
 def changeDirectory(path):
-	os.chdir(path)
-	return subprocess.call("ls")
+	return os.chdir(path)
 
 def git(*args):
 	return subprocess.check_call(['git'] + list(args))
 
 def main():
-	print(readFromConfig())
+	return(readFromConfig())
 
 main()
