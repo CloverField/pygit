@@ -1,7 +1,5 @@
 #!/usr/bin/python
-import os
-import sys
-import subprocess
+import os, sys, subprocess
 
 def checkForConfig():
 	return os.path.isfile(os.path.dirname(os.path.realpath(__file__))+"/config.txt")
@@ -20,7 +18,8 @@ def readFromConfig():
 			cfile.close()
 		except:
 			print('Unable to create the file. \nPlease check your permissions.')
-			sys.exit(0)
+			return 1
+	return 0
 
 def changeDirectory(path):
 	return os.chdir(path)
@@ -31,4 +30,4 @@ def git(*args):
 def main():
 	return(readFromConfig())
 
-main()
+if __name__ == '__main__': main()
